@@ -77,6 +77,7 @@ $ make && make install prefix=/usr/local
 # bpftool
 $ cd /usr/src/linux-source-5.13.0/tools/bpf/bpftool
 $ make && make install 
+
 # 确认bpftool安装成功
 $ bpftool version -p 
 {
@@ -88,3 +89,11 @@ $ bpftool version -p
 }
 ```
 
+
+## vmlinux.h
+
+
+通过一下命令生成 `vmlinux.h`
+```bash
+$ bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
+```
