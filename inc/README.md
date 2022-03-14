@@ -26,3 +26,11 @@ $ wc -l vmlinux.h
 但是，通过使用 **libbpf** 库提供的功能可以实现 “**CO:RE**”（一次编译，到处运行）。**libbpf** 库定义了部分宏（比如 **BPF_CORE_READ**），其可分析 **eBPF** 程序试图访问 **vmlinux.h** 中定义的类型中的哪些字段。如果访问的字段在当前内核定义的结构中发生了移动，宏 / 辅助函数会协助自动找到对应字段。因此，我们可以使用当前内核中生成的 **vmlinux.h** 头文件来编译 **eBPF** 程序，然后在不同的内核上运行它。
 
 [BPF CO-RE reference guide](https://nakryiko.com/posts/bpf-core-reference-guide/)
+
+
+## BTF
+
+
+[BPF Type Format (BTF)](https://www.kernel.org/doc/html/latest/bpf/btf.html)
+
+[BPF BTF 详解](https://www.ebpf.top/post/kernel_btf/)
