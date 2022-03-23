@@ -5,6 +5,7 @@ import (
 	"github.com/cilium/ebpf/rlimit"
 	"github.com/spf13/cobra"
 	"log"
+	"net"
 	"os"
 	"path"
 )
@@ -16,9 +17,12 @@ func NewAddCommand() *cobra.Command {
 		Example: "xdp_blacklist add 172.17.0.3",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			blackIP := args[0]
-			log.Printf("will add ip[%s] to xdp blacklist\n", blackIP)
-			//ctx := SetupSignalContext()
+			blackIP := net.ParseIP(args[0])
+			if blackIP == nil {
+				log.Println("err ip format: ", args[0])
+				return
+			}
+			log.Printf("will add ip [%s] to xdp blacklist\n", blackIP)
 
 			// Allow the current process to lock memory for eBPF resources.
 			if err := rlimit.RemoveMemlock(); err != nil {
@@ -39,10 +43,6 @@ func NewAddCommand() *cobra.Command {
 			var objs XDPObj
 			if err := spec.LoadAndAssign(&objs, &ebpf.CollectionOptions{
 				Maps: ebpf.MapOptions{
-					// Pin the map to the BPF filesystem and configure the
-					// library to automatically re-write it in the BPF
-					// program so it can be re-used if it already exists or
-					// create it if not
 					PinPath: pinPath,
 				},
 			}); err != nil {
@@ -51,7 +51,6 @@ func NewAddCommand() *cobra.Command {
 			defer objs.Program.Close()
 			defer objs.Map.Close()
 
-			log.Println("add tp map", ConvertIP2Number(blackIP))
 			err = objs.Map.Put(ConvertIP2Number(blackIP), uint64(0))
 			if err != nil {
 				log.Panic("update map err, ", err)

@@ -53,10 +53,21 @@ func SetupSignalContext() context.Context {
 }
 
 // ConvertIP2Number convert ip to uint32
-func ConvertIP2Number(ip string) uint32 {
+func ConvertIP2Number(ip net.IP) uint32 {
 	var num uint32
-	binary.Read(bytes.NewBuffer(net.ParseIP(ip).To4()), binary.LittleEndian, &num)
+	binary.Read(bytes.NewBuffer(ip.To4()), binary.LittleEndian, &num)
 	return num
+}
+
+// ConvertNum2IP convert uint32 to ip
+func ConvertNum2IP(ip uint32) net.IP {
+	buffer := bytes.NewBuffer([]byte{})
+	err := binary.Write(buffer, binary.LittleEndian, ip)
+	if err != nil {
+		return nil
+	}
+
+	return buffer.Bytes()[:4]
 }
 
 type XDPObj struct {

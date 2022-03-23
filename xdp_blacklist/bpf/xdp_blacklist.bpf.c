@@ -91,7 +91,7 @@ u32 parse_ipv4(struct xdp_md *ctx, u64 l3_offset) {
     ip_src = iph->saddr;
     //ip_src = ntohl(ip_src); // ntohl does not work for some reason!?!
 
-    bpf_debug("Valid IPv4 packet: raw saddr:0x%x\n", ip_src);
+    bpf_debug("Valid IPv4 packet: raw saddr:0x%x %d\n", ip_src, ip_src);
 
     value = bpf_map_lookup_elem(&xdp_blacklist_map, &ip_src);
     if (value) {

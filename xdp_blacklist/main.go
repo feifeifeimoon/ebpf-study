@@ -13,6 +13,7 @@ func main() {
 	}
 	rootCmd.AddCommand(NewAttachCommand())
 	rootCmd.AddCommand(NewAddCommand())
+	rootCmd.AddCommand(NewListCommand())
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println("execute err", err)
