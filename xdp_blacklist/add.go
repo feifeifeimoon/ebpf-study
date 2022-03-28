@@ -53,7 +53,7 @@ func NewAddCommand() *cobra.Command {
 
 			err = objs.Map.Put(ConvertIP2Number(blackIP), uint64(0))
 			if err != nil {
-				log.Panic("update map err, ", err)
+				log.Println("put map err, ", err)
 				return
 			}
 		},

@@ -12,7 +12,9 @@ func main() {
 		Long: "xdp_blacklist is a blacklist program implemented through ebpf",
 	}
 	rootCmd.AddCommand(NewAttachCommand())
+	rootCmd.AddCommand(NewDetachCommand())
 	rootCmd.AddCommand(NewAddCommand())
+	rootCmd.AddCommand(NewDeleteCommand())
 	rootCmd.AddCommand(NewListCommand())
 
 	if err := rootCmd.Execute(); err != nil {

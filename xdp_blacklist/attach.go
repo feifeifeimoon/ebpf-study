@@ -12,7 +12,8 @@ import (
 
 func NewAttachCommand() *cobra.Command {
 	return &cobra.Command{
-		Use:     "attach attach xdp to network device",
+		Use:     "attach",
+		Short:   "Attach xdp to network device",
 		Example: "xdp_blacklist attach eth0",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
