@@ -1,6 +1,5 @@
 CLANG ?= clang
 CFLAGS += -Wall -O2
-CCFlags =  -target bpf -Wall
 INC ?= -I../inc
 
 .PHNOY: all
