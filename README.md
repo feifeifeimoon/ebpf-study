@@ -15,7 +15,8 @@ eBPF - extended Berkeley Packet Filter
 
 ## Catalogue
 
- + [Environment](https://github.com/feifeifeimoon/ebpf-study/blob/main/ENV.md) : 使用 **Multipass** 搭建 **eBPF** 开发环境的记录。
+ + [environment](https://github.com/feifeifeimoon/ebpf-study/blob/main/ENV.md) : 使用 **Multipass** 搭建 **eBPF** 开发环境的记录。
  + [sys enter openat](https://github.com/feifeifeimoon/ebpf-study/blob/main/sys_enter_openat/README.md) : 使用 **eBPF** 追踪系统中打开文件的调用。
+ + [fibonacci](https://github.com/feifeifeimoon/ebpf-study/blob/main/fibonacci/README.md) : 使用 **eBPF** 追踪 **Go** 的 **fibonacci** 程序，并解析 **UProbe** 原理。
  + [xdp drop the world](https://github.com/feifeifeimoon/ebpf-study/blob/main/xdp_drop_the_world/README.md) : **XDP** 丢弃所有包的程序。
  + [xdp blacklist](https://github.com/feifeifeimoon/ebpf-study/blob/main/xdp_drop_the_world/README.md) : 在上一个的基础上 通过 **eBFP** 的 **Map** 实现 **IP** 黑名单。
